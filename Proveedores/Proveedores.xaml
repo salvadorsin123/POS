@@ -1,0 +1,120 @@
+﻿<Window x:Class="POS.Proveedores.Proveedores"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:POS.Proveedores"
+        mc:Ignorable="d"
+        Title="Gestión de Proveedores" Height="600" Width="900">
+    <TabControl>
+        <!-- Pestaña de Proveedores -->
+        <TabItem Header="Proveedores">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <!-- Barra de herramientas -->
+                <StackPanel Orientation="Horizontal" Grid.Row="0">
+                    <Button Content="Nuevo" Click="BtnNuevoProveedor_Click" Margin="10,0,0,0"/>
+                    <Button Content="Editar" Click="BtnEditarProveedor_Click" Margin="10,0,0,0"/>
+                    <Button Content="Eliminar" Click="BtnEliminarProveedor_Click" Margin="10,0,0,0"/>
+                </StackPanel>
+
+                <!-- Lista de proveedores -->
+                <DataGrid x:Name="dgProveedores" Grid.Row="1" AutoGenerateColumns="False" 
+                          SelectionMode="Single" SelectionChanged="DgProveedores_SelectionChanged">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="ID" Binding="{Binding nProveedorID}"/>
+                        <DataGridTextColumn Header="Nombre" Binding="{Binding cNombreP}"/>
+                        <DataGridTextColumn Header="Contacto" Binding="{Binding cContacto}"/>
+                        <DataGridTextColumn Header="Teléfono" Binding="{Binding cTelefono}"/>
+                        <DataGridTextColumn Header="Email" Binding="{Binding cEmail}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+
+                <!-- Detalles del proveedor seleccionado -->
+                <StackPanel Grid.Row="2" Orientation="Vertical" Margin="5">
+                    <TextBlock Text="Productos del proveedor:" FontWeight="Bold"/>
+                    <DataGrid x:Name="dgProductosProveedor" AutoGenerateColumns="False" Height="150">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Producto" Binding="{Binding cProducto}"/>
+                            <DataGridTextColumn Header="Precio" Binding="{Binding nPrecioUnitario, StringFormat=C}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Button Content="Agregar Producto" Click="BtnAgregarProducto_Click" Margin="0,5,0,0"/>
+                </StackPanel>
+            </Grid>
+        </TabItem>
+
+        <!-- Pestaña de Pedidos -->
+        <TabItem Header="Pedidos" >
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <!-- Nueva fila para abonos -->
+                </Grid.RowDefinitions>
+
+                <!-- Barra de herramientas -->
+                <StackPanel Orientation="Horizontal" Grid.Row="0">
+                    <Button Content="Nuevo Pedido" Click="BtnNuevoPedido_Click" Margin="10,0,0,0"/>
+                    <Button Content="Marcar Recibido" Click="BtnMarcarRecibido_Click" Margin="10,0,0,0"/>
+                    <Button Content="Cancelar Pedido" Click="BtnCancelarPedido_Click" Margin="10,0,0,0" 
+            Background="#FFFFECEC" FontWeight="Bold"/>
+                </StackPanel>
+
+                <!-- Lista de pedidos -->
+                <DataGrid x:Name="dgPedidos" Grid.Row="1" AutoGenerateColumns="False" SelectionMode="Single" SelectionChanged="DgPedidos_SelectionChanged">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="ID" Binding="{Binding nServicioID}"/>
+                        <DataGridTextColumn Header="Proveedor" Binding="{Binding cNombreProveedor}"/>
+                        <DataGridTextColumn Header="Total" Binding="{Binding nDeudaTotal, StringFormat=C}"/>
+                        <DataGridTextColumn Header="Anticipo" Binding="{Binding nAnticipo, StringFormat=C}"/>
+                        <DataGridTextColumn Header="Saldo Pendiente" Binding="{Binding SaldoPendiente, StringFormat=C}"/>
+                        <DataGridTextColumn Header="Fecha" Binding="{Binding dPedido, StringFormat=d}"/>
+                        <DataGridTextColumn Header="Estado" Binding="{Binding cEstado}"/>
+                        <DataGridTextColumn Header="Observaciones" Binding="{Binding cObservaciones}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+
+                <!-- Detalles del pedido seleccionado -->
+                <StackPanel Grid.Row="2" Orientation="Vertical" Margin="5">
+                    <TextBlock Text="Detalles del pedido:" FontWeight="Bold"/>
+                    <DataGrid x:Name="dgDetallesPedido" AutoGenerateColumns="False" Height="150">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Producto" Binding="{Binding cProducto}"/>
+                            <DataGridTextColumn Header="Cantidad" Binding="{Binding nCantidad}"/>
+                            <DataGridTextColumn Header="Precio Unitario" Binding="{Binding nPrecioUnitario, StringFormat=C}"/>
+                            <DataGridTextColumn Header="Subtotal" Binding="{Binding nSubtotal, StringFormat=C}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </StackPanel>
+
+                <!-- Panel de abonos -->
+                <GroupBox Grid.Row="3" Header="Registrar Abono" Margin="5" Padding="5">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Label Content="Monto:" VerticalAlignment="Center"/>
+                        <TextBox x:Name="txtMontoAbono" Grid.Column="1" Margin="5,0" Text="{Binding MontoAbono, StringFormat=C, UpdateSourceTrigger=PropertyChanged}"/>
+                        <Button Content="Registrar Abono" Grid.Column="2" Margin="5,0" Click="BtnRegistrarAbono_Click"/>
+                        <TextBlock x:Name="txtSaldoPendiente" Grid.Column="3" Margin="10,0" VerticalAlignment="Center">
+                    <Run Text="Saldo pendiente:" FontWeight="Bold"/>
+                    <Run Text="{Binding PedidoSeleccionado.SaldoPendiente, StringFormat=C}"/>
+                        </TextBlock>
+                    </Grid>
+                </GroupBox>
+            </Grid>
+        </TabItem>
+    </TabControl>
+</Window>

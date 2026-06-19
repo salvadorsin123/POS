@@ -1,0 +1,58 @@
+<Window x:Class="POS.Views.Dialogs.EditProveedorDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Proveedor" Height="440" Width="400"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterOwner"
+        Style="{StaticResource DarkWindow}">
+
+    <Grid Margin="24">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" x:Name="TxtTitulo" Text="Nuevo Proveedor"
+                   Style="{StaticResource TitleText}" Margin="0,0,0,16"/>
+
+        <StackPanel Grid.Row="1">
+            <TextBlock Text="NOMBRE *" Style="{StaticResource FieldLabel}"/>
+            <TextBox x:Name="TxtNombre" Style="{StaticResource DarkTextBox}"/>
+
+            <TextBlock Text="CONTACTO" Style="{StaticResource FieldLabel}"/>
+            <TextBox x:Name="TxtContacto" Style="{StaticResource DarkTextBox}"/>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/><ColumnDefinition Width="12"/><ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0">
+                    <TextBlock Text="TELÉFONO" Style="{StaticResource FieldLabel}"/>
+                    <TextBox x:Name="TxtTelefono" Style="{StaticResource DarkTextBox}"/>
+                </StackPanel>
+                <StackPanel Grid.Column="2">
+                    <TextBlock Text="RFC" Style="{StaticResource FieldLabel}"/>
+                    <TextBox x:Name="TxtRFC" Style="{StaticResource DarkTextBox}"/>
+                </StackPanel>
+            </Grid>
+
+            <TextBlock Text="CORREO" Style="{StaticResource FieldLabel}"/>
+            <TextBox x:Name="TxtCorreo" Style="{StaticResource DarkTextBox}"/>
+
+            <TextBlock Text="DIRECCIÓN" Style="{StaticResource FieldLabel}"/>
+            <TextBox x:Name="TxtDireccion" Style="{StaticResource DarkTextBox}"/>
+
+            <TextBlock x:Name="TxtError" Foreground="{StaticResource BrushDanger}"
+                       FontSize="11" Margin="0,8,0,0"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right"
+                    Margin="0,16,0,0">
+            <Button Content="Cancelar" Style="{StaticResource BtnOutline}"
+                    Padding="16,9" Margin="0,0,8,0" Click="BtnCancelar_Click"/>
+            <Button Content="Guardar" Style="{StaticResource BtnPrimary}"
+                    Padding="16,9" Click="BtnGuardar_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

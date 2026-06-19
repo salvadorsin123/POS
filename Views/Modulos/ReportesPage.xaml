@@ -1,0 +1,141 @@
+<Page x:Class="POS.Views.Modulos.ReportesPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:h="clr-namespace:POS.Helpers"
+      Background="Transparent" Title="Reportes">
+
+    <Page.Resources>
+        <h:DecimalToCurrencyConverter x:Key="ToCurrency"/>
+        <h:BoolToVisibilityConverter x:Key="BoolToVis"/>
+    </Page.Resources>
+
+    <Grid Margin="16">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Filtros -->
+        <Border Grid.Row="0" Style="{StaticResource CardPanel}" Margin="0,0,0,12">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="160"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="160"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0" Text="Desde:" VerticalAlignment="Center"
+                           Margin="0,0,8,0" Foreground="{StaticResource BrushTextSecond}"/>
+                <DatePicker Grid.Column="1" Style="{StaticResource DarkDatePicker}"
+                            SelectedDate="{Binding Desde}"/>
+                <TextBlock Grid.Column="2" Text="Hasta:" VerticalAlignment="Center"
+                           Margin="12,0,8,0" Foreground="{StaticResource BrushTextSecond}"/>
+                <DatePicker Grid.Column="3" Style="{StaticResource DarkDatePicker}"
+                            SelectedDate="{Binding Hasta}"/>
+
+                <Button Grid.Column="5" Content="&#xE8D4; Generar"
+                        FontFamily="Segoe MDL2 Assets"
+                        Style="{StaticResource BtnSecondary}"
+                        Padding="14,8" Margin="12,0,8,0"
+                        Command="{Binding GenerarReporteCommand}"/>
+                <Button Grid.Column="6" Content="&#xE7C3; Exportar PDF"
+                        FontFamily="Segoe MDL2 Assets"
+                        Style="{StaticResource BtnPrimary}"
+                        Padding="14,8"
+                        Command="{Binding ExportarPDFCommand}"/>
+            </Grid>
+        </Border>
+
+        <!-- KPIs -->
+        <Grid Grid.Row="1" Margin="0,0,0,12">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Border Grid.Column="0" Style="{StaticResource CardPanel}" Margin="0,0,6,0">
+                <StackPanel>
+                    <TextBlock Text="TOTAL INGRESOS" Style="{StaticResource MutedText}"/>
+                    <TextBlock Text="{Binding TotalPeriodo, Converter={StaticResource ToCurrency}}"
+                               Style="{StaticResource AmountText}" Margin="0,4,0,0"/>
+                </StackPanel>
+            </Border>
+            <Border Grid.Column="1" Style="{StaticResource CardPanel}" Margin="6,0">
+                <StackPanel>
+                    <TextBlock Text="TRANSACCIONES" Style="{StaticResource MutedText}"/>
+                    <TextBlock Text="{Binding TotalTransacciones}"
+                               FontSize="22" FontWeight="Bold"
+                               Foreground="{StaticResource BrushAccentSecond}" Margin="0,4,0,0"/>
+                </StackPanel>
+            </Border>
+            <Border Grid.Column="2" Style="{StaticResource CardPanel}" Margin="6,0,0,0">
+                <StackPanel>
+                    <TextBlock Text="ESTADO" Style="{StaticResource MutedText}"/>
+                    <TextBlock Text="{Binding StatusMessage}"
+                               FontSize="13" Foreground="{StaticResource BrushText}" Margin="0,4,0,0"/>
+                </StackPanel>
+            </Border>
+        </Grid>
+
+        <!-- Tabs de datos -->
+        <TabControl Grid.Row="2" Style="{StaticResource DarkTabControl}">
+            <TabItem Header="Ventas por Día" Style="{StaticResource DarkTabItem}">
+                <Border Style="{StaticResource CardPanel}" Padding="0">
+                    <DataGrid ItemsSource="{Binding ResumenVentas}"
+                              Style="{StaticResource DarkDataGrid}">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Fecha"          Binding="{Binding Fecha, StringFormat=dd/MM/yyyy}" Width="120"/>
+                            <DataGridTextColumn Header="Transacciones"  Binding="{Binding TotalTransacciones}" Width="130"/>
+                            <DataGridTextColumn Header="Ingresos"       Binding="{Binding TotalIngresos, StringFormat=C2}" Width="130"/>
+                            <DataGridTextColumn Header="Descuentos"     Binding="{Binding TotalDescuentos, StringFormat=C2}" Width="130"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Border>
+            </TabItem>
+            <TabItem Header="Movimiento Productos" Style="{StaticResource DarkTabItem}">
+                <Border Style="{StaticResource CardPanel}" Padding="0">
+                    <DataGrid ItemsSource="{Binding Movimientos}"
+                              Style="{StaticResource DarkDataGrid}">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Producto"      Binding="{Binding NombreProducto}" Width="*"/>
+                            <DataGridTextColumn Header="Vendido"       Binding="{Binding CantidadVendida}" Width="100"/>
+                            <DataGridTextColumn Header="Total Generado" Binding="{Binding TotalGenerado, StringFormat=C2}" Width="140"/>
+                            <DataGridTextColumn Header="Stock Actual"  Binding="{Binding StockActual}" Width="110"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Border>
+            </TabItem>
+            <TabItem Header="Historial de Reportes" Style="{StaticResource DarkTabItem}">
+                <Border Style="{StaticResource CardPanel}" Padding="0">
+                    <DataGrid ItemsSource="{Binding Historial}"
+                              Style="{StaticResource DarkDataGrid}">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Tipo"       Binding="{Binding Tipo}" Width="160"/>
+                            <DataGridTextColumn Header="Generado"   Binding="{Binding FechaGeneracion, StringFormat=dd/MM/yyyy HH:mm}" Width="140"/>
+                            <DataGridTextColumn Header="Desde"      Binding="{Binding FechaInicio, StringFormat=dd/MM/yyyy}" Width="100"/>
+                            <DataGridTextColumn Header="Hasta"      Binding="{Binding FechaFin, StringFormat=dd/MM/yyyy}" Width="100"/>
+                            <DataGridTextColumn Header="Empleado"   Binding="{Binding NombreEmpleado}" Width="*"/>
+                            <DataGridTemplateColumn Header="Abrir" Width="70">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Content="&#xE838;" FontFamily="Segoe MDL2 Assets"
+                                                Style="{StaticResource BtnIcon}"
+                                                CommandParameter="{Binding}"
+                                                Command="{Binding DataContext.AbrirArchivoCommand,
+                                                          RelativeSource={RelativeSource AncestorType=Page}}"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Border>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Page>

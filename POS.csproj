@@ -1,0 +1,66 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+    <RootNamespace>POS</RootNamespace>
+    <AssemblyName>POS</AssemblyName>
+    <StartupObject>POS.App</StartupObject>
+  </PropertyGroup>
+
+  <!-- Excluir archivos legacy (código anterior a la reescritura) -->
+  <ItemGroup>
+    <Compile Remove="BD\**"/>
+    <Compile Remove="ConexionBD\**"/>
+    <Compile Remove="DAL\**"/>
+    <Compile Remove="Inicio_Sesion\**"/>
+    <Compile Remove="Principal\**"/>
+    <Compile Remove="Configuracion\**"/>
+    <Compile Remove="Ventas\**"/>
+    <Compile Remove="Productos\**"/>
+    <Compile Remove="Clientes\**"/>
+    <Compile Remove="Empleados\**"/>
+    <Compile Remove="Proveedores\**"/>
+    <Compile Remove="Inventario\**"/>
+    <Compile Remove="Apartados\**"/>
+    <Compile Remove="Detalle_Venta\**"/>
+    <Compile Remove="Reporte\**"/>
+    <Compile Remove="MainWindow.xaml.cs"/>
+    <Compile Remove="Properties\Settings.Designer.cs"/>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Remove="Ventas\*.xaml"/>
+    <Page Remove="Productos\*.xaml"/>
+    <Page Remove="Clientes\*.xaml"/>
+    <Page Remove="Empleados\*.xaml"/>
+    <Page Remove="Proveedores\*.xaml"/>
+    <Page Remove="Inventario\*.xaml"/>
+    <Page Remove="Apartados\*.xaml"/>
+    <Page Remove="Detalle_Venta\*.xaml"/>
+    <Page Remove="Reporte\*.xaml"/>
+    <Page Remove="Inicio_Sesion\*.xaml"/>
+    <Page Remove="Principal\*.xaml"/>
+    <Page Remove="Configuracion\*.xaml"/>
+    <Page Remove="MainWindow.xaml"/>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
+    <PackageReference Include="Microsoft.Data.Sqlite" Version="8.0.11" />
+    <PackageReference Include="QuestPDF" Version="2024.3.7" />
+    <PackageReference Include="System.Drawing.Common" Version="8.0.14" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="imagenes\Principal_IMG\boton.png" Condition="Exists('imagenes\Principal_IMG\boton.png')"/>
+    <Resource Include="imagenes\Principal_IMG\carritodecompra.png" Condition="Exists('imagenes\Principal_IMG\carritodecompra.png')"/>
+    <Resource Include="imagenes\Principal_IMG\clientes.png" Condition="Exists('imagenes\Principal_IMG\clientes.png')"/>
+    <Resource Include="imagenes\Principal_IMG\Dinero.png" Condition="Exists('imagenes\Principal_IMG\Dinero.png')"/>
+    <Resource Include="imagenes\Principal_IMG\Reportes.png" Condition="Exists('imagenes\Principal_IMG\Reportes.png')"/>
+  </ItemGroup>
+
+</Project>

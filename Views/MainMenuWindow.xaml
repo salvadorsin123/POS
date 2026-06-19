@@ -1,0 +1,167 @@
+<Window x:Class="POS.Views.MainMenuWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:POS.ViewModels"
+        xmlns:h="clr-namespace:POS.Helpers"
+        Title="Sistema POS"
+        Height="700" Width="1100"
+        MinHeight="600" MinWidth="900"
+        WindowStartupLocation="CenterScreen"
+        Style="{StaticResource DarkWindow}">
+
+    <Window.Resources>
+        <h:BoolToVisibilityConverter x:Key="BoolToVis"/>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="220"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- ===== SIDEBAR ===== -->
+        <Border Grid.Column="0" Background="{StaticResource BrushMedium}">
+            <DockPanel>
+                <!-- Logo -->
+                <StackPanel DockPanel.Dock="Top" Margin="16,24,16,20">
+                    <Border Background="#22E94560" CornerRadius="12" Width="52" Height="52"
+                            HorizontalAlignment="Left" Margin="0,0,0,12">
+                        <TextBlock Text="&#xE7BF;" FontFamily="Segoe MDL2 Assets"
+                                   FontSize="24" HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   Foreground="{StaticResource BrushAccent}"/>
+                    </Border>
+                    <TextBlock Text="Sistema POS" FontSize="16" FontWeight="Bold"
+                               Foreground="{StaticResource BrushText}"/>
+                    <TextBlock Text="{Binding NombreUsuario}" FontSize="11"
+                               Foreground="{StaticResource BrushTextMuted}" Margin="0,2,0,0"/>
+                    <Border Background="#22E94560" CornerRadius="4" Padding="6,2"
+                            HorizontalAlignment="Left" Margin="0,4,0,0">
+                        <TextBlock Text="{Binding RolUsuario}" FontSize="10"
+                                   Foreground="{StaticResource BrushAccent}" FontWeight="SemiBold"/>
+                    </Border>
+                </StackPanel>
+
+                <Separator DockPanel.Dock="Top" Style="{StaticResource DarkSeparator}" Margin="16,0"/>
+
+                <!-- Botón cerrar sesión abajo -->
+                <Button DockPanel.Dock="Bottom" Style="{StaticResource BtnMenu}"
+                        Click="BtnCerrarSesion_Click" Margin="16,8">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="&#xF3B1;" FontFamily="Segoe MDL2 Assets"
+                                   FontSize="16" Margin="0,0,10,0"
+                                   Foreground="{StaticResource BrushDanger}"/>
+                        <TextBlock Text="Cerrar Sesión"
+                                   Foreground="{StaticResource BrushDanger}"/>
+                    </StackPanel>
+                </Button>
+
+                <!-- Navegación -->
+                <StackPanel DockPanel.Dock="Top" Margin="16,8">
+
+                    <Button Style="{StaticResource BtnMenu}" Tag="Ventas"
+                            Click="NavButton_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="&#xE8BF;" FontFamily="Segoe MDL2 Assets"
+                                       FontSize="16" Margin="0,0,10,0"/>
+                            <TextBlock Text="Punto de Venta"/>
+                        </StackPanel>
+                    </Button>
+
+                    <Button Style="{StaticResource BtnMenu}" Tag="Clientes"
+                            Click="NavButton_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="&#xE716;" FontFamily="Segoe MDL2 Assets"
+                                       FontSize="16" Margin="0,0,10,0"/>
+                            <TextBlock Text="Clientes"/>
+                        </StackPanel>
+                    </Button>
+
+                    <Button Style="{StaticResource BtnMenu}" Tag="Productos"
+                            Click="NavButton_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="&#xE7BF;" FontFamily="Segoe MDL2 Assets"
+                                       FontSize="16" Margin="0,0,10,0"/>
+                            <TextBlock Text="Productos"/>
+                        </StackPanel>
+                    </Button>
+
+                    <Button Style="{StaticResource BtnMenu}" Tag="Apartados"
+                            Click="NavButton_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="&#xE8A1;" FontFamily="Segoe MDL2 Assets"
+                                       FontSize="16" Margin="0,0,10,0"/>
+                            <TextBlock Text="Apartados"/>
+                        </StackPanel>
+                    </Button>
+
+                    <!-- Solo Admin -->
+                    <Separator Style="{StaticResource DarkSeparator}"
+                               Visibility="{Binding EsAdministrador, Converter={StaticResource BoolToVis}}"/>
+
+                    <Button Style="{StaticResource BtnMenu}" Tag="Empleados"
+                            Click="NavButton_Click"
+                            Visibility="{Binding EsAdministrador, Converter={StaticResource BoolToVis}}">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="&#xE77B;" FontFamily="Segoe MDL2 Assets"
+                                       FontSize="16" Margin="0,0,10,0"/>
+                            <TextBlock Text="Empleados"/>
+                        </StackPanel>
+                    </Button>
+
+                    <Button Style="{StaticResource BtnMenu}" Tag="Inventario"
+                            Click="NavButton_Click"
+                            Visibility="{Binding EsAdministrador, Converter={StaticResource BoolToVis}}">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="&#xE8D4;" FontFamily="Segoe MDL2 Assets"
+                                       FontSize="16" Margin="0,0,10,0"/>
+                            <TextBlock Text="Categorías"/>
+                        </StackPanel>
+                    </Button>
+
+                    <Button Style="{StaticResource BtnMenu}" Tag="Proveedores"
+                            Click="NavButton_Click"
+                            Visibility="{Binding EsAdministrador, Converter={StaticResource BoolToVis}}">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="&#xE8CB;" FontFamily="Segoe MDL2 Assets"
+                                       FontSize="16" Margin="0,0,10,0"/>
+                            <TextBlock Text="Proveedores"/>
+                        </StackPanel>
+                    </Button>
+
+                    <Button Style="{StaticResource BtnMenu}" Tag="Reportes"
+                            Click="NavButton_Click"
+                            Visibility="{Binding EsAdministrador, Converter={StaticResource BoolToVis}}">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="&#xE9D9;" FontFamily="Segoe MDL2 Assets"
+                                       FontSize="16" Margin="0,0,10,0"/>
+                            <TextBlock Text="Reportes"/>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+            </DockPanel>
+        </Border>
+
+        <!-- ===== CONTENIDO ===== -->
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!-- Barra superior -->
+            <Border Grid.Row="0" Background="{StaticResource BrushCard}"
+                    BorderBrush="{StaticResource BrushBorder}" BorderThickness="0,0,0,1"
+                    Padding="20,12">
+                <TextBlock x:Name="TxtPageTitle" Text="Punto de Venta"
+                           FontSize="18" FontWeight="SemiBold"
+                           Foreground="{StaticResource BrushText}"/>
+            </Border>
+
+            <!-- Frame de contenido -->
+            <Frame x:Name="MainFrame" Grid.Row="1"
+                   NavigationUIVisibility="Hidden"
+                   Background="Transparent"/>
+        </Grid>
+    </Grid>
+</Window>

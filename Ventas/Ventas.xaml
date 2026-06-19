@@ -1,0 +1,108 @@
+﻿<UserControl x:Class="POS.Ventas.Ventas"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             Background="White"
+             Loaded="Carga_Clientes" 
+             HorizontalAlignment="Stretch"
+             VerticalAlignment="Stretch"
+             >
+
+    <Grid Margin="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="3*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="0" Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <Label Grid.Row="0" Content="Buscar Producto:" FontWeight="Bold"/>
+            <TextBox Grid.Row="1" x:Name="Txt_BuscarProducto" Width="300" Margin="0,5,0,15" HorizontalAlignment="Left"/>
+
+            <ListView Grid.Row="2" x:Name="Lista_Productos"
+          Style="{StaticResource EstiloLista}"
+          MouseDoubleClick="Lista_Productos_MouseDoubleClick">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Producto" Width="Auto" DisplayMemberBinding="{Binding Nombre}" />
+                        <GridViewColumn Header="Precio" Width="Auto" DisplayMemberBinding="{Binding Precio}" />
+                        <GridViewColumn Header="Descuento" Width="Auto" DisplayMemberBinding="{Binding Descuento}" />
+                        <GridViewColumn Header="Precio Final" Width="Auto" DisplayMemberBinding="{Binding PrecioConDescuento}" />
+                        <GridViewColumn Header="Stock" Width="Auto" DisplayMemberBinding="{Binding Stock}" />
+                    </GridView>
+                </ListView.View>
+            </ListView>
+
+            <Button Grid.Row="3" x:Name="Btn_AgregarAlCarrito" Content="Agregar al Carrito" Margin="0,10,0,0" Width="200" Height="50" HorizontalAlignment="Center"/>
+        </Grid>
+
+        <Grid Grid.Column="1" Margin="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="21*"/>
+                <ColumnDefinition Width="16*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <Label Grid.Row="0" Content="Carrito de Compra" FontWeight="Bold" FontSize="16" Margin="0,0,0,10" Grid.ColumnSpan="2"/>
+            <ListView Grid.Row="1" x:Name="Lista_Carrito"
+                      Style="{StaticResource EstiloLista}"
+                      MouseDoubleClick="Lista_Carrito_MouseDoubleClick" Grid.ColumnSpan="2" Margin="5,5,5,5">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Producto" Width="Auto" DisplayMemberBinding="{Binding Nombre}" />
+                        <GridViewColumn Header="Cantidad" Width="Auto" DisplayMemberBinding="{Binding Cantidad}" />
+                        <GridViewColumn Header="Subtotal" Width="Auto" DisplayMemberBinding="{Binding Subtotal}" />
+                    </GridView>
+                </ListView.View>
+            </ListView>
+
+            <StackPanel Grid.Row="2" Orientation="Vertical" Margin="0,10,0,0" Grid.ColumnSpan="2">
+                <Label Content="ID Cliente:"/>
+
+                <!-- StackPanel horizontal para ComboBox + Botón -->
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,0,0,5">
+                    <ComboBox x:Name="Cbo_clientes" Width="150" />
+                    <Button Content="+" Width="30" Margin="5,0,0,0" Click="Btn_AgregarNuevoCliente_Click"/>
+                </StackPanel>
+
+                <Label Content="Total:"/>
+                <Label x:Name="Txt_nTotal" Width="150" ContentStringFormat="C"  HorizontalAlignment="Left"/>
+            </StackPanel>
+
+
+            <Button Grid.Row="3" x:Name="Btn_FinalizarVenta" 
+                    Content="Finalizar Venta" 
+                    Background="#4CAF50" 
+                    Foreground="White" 
+                    Width="90" Height="40" 
+                    HorizontalAlignment="Right" 
+                    Margin="0,20,0,0" 
+                    Grid.ColumnSpan="2"/>
+            
+            <Button Grid.Row="3" x:Name="Btn_HacerApartado"
+                Content="Hacer Apartado"
+                Background="DarkOrange"
+                Foreground="White"
+                Width="90"
+                Height="40"
+                HorizontalAlignment="Left"
+                Margin="0,20,0,0"
+                Grid.ColumnSpan="2"
+                Click="Btn_HacerApartado_Click"/>
+
+        </Grid>
+    </Grid>
+</UserControl>

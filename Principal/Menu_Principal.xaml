@@ -1,0 +1,335 @@
+﻿<Window x:Class="POS.Principal.Menu_Principal"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:POS.Principal"
+        mc:Ignorable="d"
+        Title="Proyecto Frameworks" 
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="CanMinimize"
+        Height="560" 
+        Width="650"
+        Closing="Window_Closing"
+        >
+
+    <Border CornerRadius="5"
+          BorderThickness="2">
+        <Border.BorderBrush>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="#0066cc" Offset="0"/>
+                <GradientStop Color="Red" Offset="0.75"/>
+                <GradientStop Color="Green" Offset="1"/>
+            </LinearGradientBrush>
+        </Border.BorderBrush>
+
+        <Border.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="#E6E6FA" Offset="0"/>
+            </LinearGradientBrush>
+        </Border.Background>
+
+        <Grid x:Name="Grid_Control">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="250"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock x:Name="lblUsuario"
+           FontSize="14"
+           FontWeight="Bold"
+           Foreground="DarkBlue"
+           Margin="10,10,10,10" />
+
+            <StackPanel x:Name="Panel_Lateral" Grid.Column="0">
+                <StackPanel x:Name="StackPanel_Logo"
+                     Width="200"
+                     HorizontalAlignment="Left"
+                     Orientation="Vertical"
+                     Margin="10,10,0,0">
+                    <Image Source="/Imagenes/Inicio_IMG/BiciCT.png"
+                        Width="125"
+                        Height="150"
+                        VerticalAlignment="Center"  
+                        Margin="0,10,0,0"
+                        Stretch="Fill"/>
+                </StackPanel>
+                <Label x:Name="Label_Titulo_Logo"
+                   Content="Bicicletas Casa Tavares"
+                   Style="{StaticResource Estilo_Etiquetas_Títulos}" Visibility="Collapsed"/>
+
+                <RadioButton x:Name="Boton_Lateral_Empleados" Click="Boton_Lateral_Empleados_Checked">
+                    <RadioButton.Style>
+                        <Style TargetType="RadioButton" BasedOn="{StaticResource Estilo_Boton_Lateral}">
+                            <Setter Property="IsChecked" Value="False"/>
+                        </Style>
+                    </RadioButton.Style>
+
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Center">
+                        <Image Margin="10,0,0,0" Stretch="Fill" Source="/Imagenes/Empleados_IMG/Empleado.png"/>
+                        <Label Margin="10,0,0,0" Content="Empleados" Style="{StaticResource Estilo_Etiquetas_Elementos }"/>
+
+                    </StackPanel>
+                </RadioButton>
+
+                <RadioButton x:Name="Boton_Lateral_Ventas" Click="Boton_Lateral_Ventas_Checked">
+                    <RadioButton.Style>
+                        <Style TargetType="RadioButton" BasedOn="{StaticResource Estilo_Boton_Lateral}">
+                            <Setter Property="IsChecked" Value="False"/>
+                        </Style>
+                    </RadioButton.Style>
+
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Center">
+                        <Image Margin="10,0,0,0" Stretch="Fill" Source="/Imagenes/Principal_IMG/Dinero.png"/>
+                        <Label Margin="10,0,0,0" Content="Ventas" Style="{StaticResource Estilo_Etiquetas_Elementos}"/>
+                    </StackPanel>
+                </RadioButton>
+
+                <RadioButton x:Name="Boton_Lateral_Categorias" Click="Boton_Lateral_Categorias_Checked">
+                    <RadioButton.Style>
+                        <Style TargetType="RadioButton" BasedOn="{StaticResource Estilo_Boton_Lateral}">
+                            <Setter Property="IsChecked" Value="False"/>
+                        </Style>
+                    </RadioButton.Style>
+
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Center">
+                        <Image Margin="10,0,0,0" Stretch="Fill" Source="/Imagenes/Principal_IMG/inventario.png"/>
+                        <Label Margin="10,0,0,0" Content="Categorias" Style="{StaticResource Estilo_Etiquetas_Elementos }"/>
+
+                    </StackPanel>
+                </RadioButton>
+
+                <RadioButton x:Name="Boton_Lateral_Clientes" Click="Boton_Lateral_Clientes_Checked">
+                    <RadioButton.Style>
+                        <Style TargetType="RadioButton" BasedOn="{StaticResource Estilo_Boton_Lateral}">
+                            <Setter Property="IsChecked" Value="False"/>
+                        </Style>
+                    </RadioButton.Style>
+
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Center">
+                        <Image Margin="10,1,0,0" Stretch="Fill" Source="/Imagenes/Principal_IMG/clientes.png"/>
+                        <Label Margin="10,0,0,0" Content="Clientes" Style="{StaticResource Estilo_Etiquetas_Elementos }"/>
+
+                    </StackPanel>
+                </RadioButton>
+
+                <RadioButton x:Name="Boton_Lateral_Carrito_Compra" Click="Boton_Lateral_Productos_Checked">
+                    <RadioButton.Style>
+                        <Style TargetType="RadioButton" BasedOn="{StaticResource Estilo_Boton_Lateral}">
+                            <Setter Property="IsChecked" Value="False"/>
+                        </Style>
+                    </RadioButton.Style>
+
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Center">
+                        <Image Margin="10,0,0,0" Stretch="Fill" Source="/Imagenes/Principal_IMG/carritodecompra.png"/>
+                        <Label Margin="10,0,0,0" Content="Productos" Style="{StaticResource Estilo_Etiquetas_Elementos }"/>
+
+                    </StackPanel>
+                </RadioButton>
+
+                <RadioButton x:Name="Boton_Lateral_Apartados" Click="Boton_Lateral_Apartados_Checked">
+                    <RadioButton.Style>
+                        <Style TargetType="RadioButton" BasedOn="{StaticResource Estilo_Boton_Lateral}">
+                            <Setter Property="IsChecked" Value="False"/>
+                        </Style>
+                    </RadioButton.Style>
+
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Center">
+                        <Image Margin="10,0,0,0" Stretch="Fill" Source="/Imagenes/Principal_IMG/oferta.png"/>
+                        <Label Margin="10,0,0,0" Content="Apartados" Style="{StaticResource Estilo_Etiquetas_Elementos }"/>
+                    </StackPanel>
+                </RadioButton>
+
+
+                <RadioButton x:Name="Boton_Lateral_Proveedores" Click="Boton_Lateral_Proveedores_Checked">
+                    <RadioButton.Style>
+                        <Style TargetType="RadioButton" BasedOn="{StaticResource Estilo_Boton_Lateral}">
+                            <Setter Property="IsChecked" Value="False"/>
+                        </Style>
+                    </RadioButton.Style>
+
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Center">
+                        <Image Margin="10,0,0,0" Stretch="Fill" Source="/Imagenes/Principal_IMG/proveedor.png"/>
+                        <Label Margin="10,0,0,0" Content="Proveedores" Style="{StaticResource Estilo_Etiquetas_Elementos }"/>
+
+                    </StackPanel>
+                </RadioButton>
+
+                <RadioButton x:Name="Boton_Lateral_Reportes" Click="Boton_Lateral_Reportes_Checked" >
+                    <RadioButton.Style>
+                        <Style TargetType="RadioButton" BasedOn="{StaticResource Estilo_Boton_Lateral}">
+                            <Setter Property="IsChecked" Value="False"/>
+                        </Style>
+                    </RadioButton.Style>
+
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Center">
+                        <Image Margin="10,0,0,0" Stretch="Fill" Source="/Imagenes/Principal_IMG/reportes.png"/>
+                        <Label Margin="10,0,0,0" Content="Reporte" Style="{StaticResource Estilo_Etiquetas_Elementos }"/>
+
+                    </StackPanel>
+                </RadioButton>
+
+                <RadioButton x:Name="Boton_Lateral_Detalle_Venta" Click="Boton_Lateral_Detalle_Venta_Checked">
+                    <RadioButton.Style>
+                        <Style TargetType="RadioButton" BasedOn="{StaticResource Estilo_Boton_Lateral}">
+                            <Setter Property="IsChecked" Value="False"/>
+                        </Style>
+                    </RadioButton.Style>
+
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Center">
+                        <Image Margin="10,0,0,0" Stretch="Fill" Source="/Imagenes/Principal_IMG/configuracion.png"/>
+                        <Label Margin="10,0,0,0" Content="Detalle de Venta" Style="{StaticResource Estilo_Etiquetas_Elementos }"/>
+
+                    </StackPanel>
+                </RadioButton>
+
+            </StackPanel>
+
+            <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="0,40,0,0" Grid.Column="1">
+                <WrapPanel x:Name="Grid_central" HorizontalAlignment="Center" VerticalAlignment="Top">
+
+                    <!-- Empleados -->
+                    <StackPanel x:Name="Panel_Empleado" Width="120" Height="150">
+                        <RadioButton x:Name="RBtn_Empleados_Central" Click="Boton_Lateral_Empleados_Checked">
+                            <RadioButton.Background>
+                                <ImageBrush ImageSource="/imagenes/Empleados_IMG/Empleado.png" Stretch="Uniform"/>
+                            </RadioButton.Background>
+                            <RadioButton.Style>
+                                <Style TargetType="RadioButton" BasedOn="{StaticResource Estilo_RB_Menu_Principal}"/>
+                            </RadioButton.Style>
+                        </RadioButton>
+                        <Label x:Name="Label_Empleados_Central" Content="Empleados"
+                   Style="{StaticResource Estilo_Labels_Menu_Principal}"/>
+                    </StackPanel>
+
+                    <!-- Ventas -->
+                    <StackPanel x:Name="Panel_Venta" Width="120" Height="150">
+                        <RadioButton x:Name="RBtn_Ventas_Central" Click="Boton_Lateral_Ventas_Checked">
+                            <RadioButton.Background>
+                                <ImageBrush ImageSource="/imagenes/Principal_img/Dinero.png" Stretch="Uniform"/>
+                            </RadioButton.Background>
+                            <RadioButton.Style>
+                                <Style TargetType="RadioButton" BasedOn="{StaticResource Estilo_RB_Menu_Principal}"/>
+                            </RadioButton.Style>
+                        </RadioButton>
+                        <Label x:Name="Label_Ventas_Central" Content="Ventas"
+                   Style="{StaticResource Estilo_Labels_Menu_Principal}"/>
+                    </StackPanel>
+
+                    <!-- Categorías -->
+                    <StackPanel x:Name="Panel_Categoria" Width="120" Height="150">
+                        <RadioButton x:Name="RBtn_Categorias_Central" Click="Boton_Lateral_Categorias_Checked">
+                            <RadioButton.Background>
+                                <ImageBrush ImageSource="/imagenes/Principal_img/Inventario.png" Stretch="Uniform"/>
+                            </RadioButton.Background>
+                            <RadioButton.Style>
+                                <Style TargetType="RadioButton" BasedOn="{StaticResource Estilo_RB_Menu_Principal}"/>
+                            </RadioButton.Style>
+                        </RadioButton>
+                        <Label x:Name="Label_Categorias_Central" Content="Categorías"
+                   Style="{StaticResource Estilo_Labels_Menu_Principal}"/>
+                    </StackPanel>
+
+                    <!-- Clientes -->
+                    <StackPanel x:Name="Panel_Cliente" Width="120" Height="150">
+                        <RadioButton x:Name="RBtn_Clientes" Click="Boton_Lateral_Clientes_Checked" >
+                            <RadioButton.Background>
+                                <ImageBrush ImageSource="/imagenes/Principal_img/clientes.png" Stretch="Uniform"/>
+                            </RadioButton.Background>
+                            <RadioButton.Style>
+                                <Style TargetType="RadioButton" BasedOn="{StaticResource Estilo_RB_Menu_Principal}"/>
+                            </RadioButton.Style>
+                        </RadioButton>
+                        <Label x:Name="Label_Clientes_Central" Content="Clientes"
+                   Style="{StaticResource Estilo_Labels_Menu_Principal}"/>
+                    </StackPanel>
+
+                    <!-- Productos -->
+                    <StackPanel x:Name="Panel_Producto" Width="120" Height="150">
+                        <RadioButton x:Name="RBtn_Productos" Click="Boton_Lateral_Productos_Checked">
+                            <RadioButton.Background>
+                                <ImageBrush ImageSource="/imagenes/Principal_img/carritodecompra.png" Stretch="Uniform"/>
+                            </RadioButton.Background>
+                            <RadioButton.Style>
+                                <Style TargetType="RadioButton" BasedOn="{StaticResource Estilo_RB_Menu_Principal}"/>
+                            </RadioButton.Style>
+                        </RadioButton>
+                        <Label x:Name="Label_Productos_Central" Content="Productos"
+                   Style="{StaticResource Estilo_Labels_Menu_Principal}"/>
+                    </StackPanel>
+
+                    <!-- Apartados -->
+                    <StackPanel x:Name="Panel_Apartados" Width="120" Height="150">
+                        <RadioButton x:Name="RBtn_Apartados" Click="Boton_Lateral_Apartados_Checked">
+                            <RadioButton.Background>
+                                <ImageBrush ImageSource="/imagenes/Principal_img/oferta.png" Stretch="Uniform"/>
+                            </RadioButton.Background>
+                            <RadioButton.Style>
+                                <Style TargetType="RadioButton" BasedOn="{StaticResource Estilo_RB_Menu_Principal}"/>
+                            </RadioButton.Style>
+                        </RadioButton>
+                        <Label x:Name="Label_Apartados_Central" Content="Apartados"
+                   Style="{StaticResource Estilo_Labels_Menu_Principal}"/>
+                    </StackPanel>
+
+                    <!-- Proveedores -->
+                    <StackPanel x:Name="Panel_Proveedores" Width="120" Height="150">
+                        <RadioButton x:Name="RBtn_Proovedores" Click="Boton_Lateral_Proveedores_Checked">
+                            <RadioButton.Background>
+                                <ImageBrush ImageSource="/imagenes/Principal_img/proveedor.png" Stretch="Uniform"/>
+                            </RadioButton.Background>
+                            <RadioButton.Style>
+                                <Style TargetType="RadioButton" BasedOn="{StaticResource Estilo_RB_Menu_Principal}"/>
+                            </RadioButton.Style>
+                        </RadioButton>
+                        <Label x:Name="Label_Proveedores" Content="Proveedores"
+                   Style="{StaticResource Estilo_Labels_Menu_Principal}"/>
+                    </StackPanel>
+
+                    <!-- Reportes -->
+                    <StackPanel x:Name="Panel_Reportes" Width="120" Height="150">
+                        <RadioButton x:Name="RBtn_Reporte" Click="Boton_Lateral_Reportes_Checked">
+                            <RadioButton.Background>
+                                <ImageBrush ImageSource="/imagenes/Principal_img/Reportes.png" Stretch="Uniform"/>
+                            </RadioButton.Background>
+                            <RadioButton.Style>
+                                <Style TargetType="RadioButton" BasedOn="{StaticResource Estilo_RB_Menu_Principal}"/>
+                            </RadioButton.Style>
+                        </RadioButton>
+                        <Label x:Name="Label_Reportes" Content="Reportes"
+                   Style="{StaticResource Estilo_Labels_Menu_Principal}"/>
+                    </StackPanel>
+
+                    <!-- Detalle de venta -->
+                    <StackPanel x:Name="Panel_Detalle" Width="120" Height="150">
+                        <RadioButton x:Name="RBtn_Detalle_VENTA" Click="Boton_Lateral_Detalle_Venta_Checked">
+                            <RadioButton.Background>
+                                <ImageBrush ImageSource="/imagenes/Principal_img/configuracion.png" Stretch="Uniform"/>
+                            </RadioButton.Background>
+                            <RadioButton.Style>
+                                <Style TargetType="RadioButton" BasedOn="{StaticResource Estilo_RB_Menu_Principal}"/>
+                            </RadioButton.Style>
+                        </RadioButton>
+                        <Label x:Name="Label_Detalle_Venta_Central" Content="Detalle de Venta"
+                   Style="{StaticResource Estilo_Labels_Menu_Principal}"/>
+                    </StackPanel>
+                    <!-- Salir -->
+                    <StackPanel x:Name="Panel_Salir" Width="120" Height="150">
+                        <RadioButton x:Name="RBtn_Salir" Click="RBtn_Salir_Click">
+                            <RadioButton.Background>
+                                <ImageBrush ImageSource="/imagenes/Principal_img/inicio.png" Stretch="Uniform"/>
+                            </RadioButton.Background>
+                            <RadioButton.Style>
+                                <Style TargetType="RadioButton" BasedOn="{StaticResource Estilo_RB_Menu_Principal}"/>
+                            </RadioButton.Style>
+                        </RadioButton>
+                        <Label x:Name="Label_Salir_Central" Content="Salir"
+                               Style="{StaticResource Estilo_Labels_Menu_Principal}"/>
+                        </StackPanel>
+
+                </WrapPanel>
+            </ScrollViewer>
+        </Grid>
+    </Border>
+
+</Window>

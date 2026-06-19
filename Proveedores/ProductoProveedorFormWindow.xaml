@@ -1,0 +1,31 @@
+﻿<Window x:Class="POS.Proveedores.ProductoProveedorFormWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:POS.Proveedores"
+        mc:Ignorable="d"
+        Title="Agregar Producto" Height="200" Width="300"
+        WindowStartupLocation="CenterScreen"
+        >
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Label Content="Producto:" Grid.Row="0"/>
+        <TextBox x:Name="txtProducto" Grid.Row="1" Margin="0,0,0,10"/>
+
+        <Label Content="Precio Unitario:" Grid.Row="2"/>
+        <TextBox x:Name="txtPrecio" Grid.Row="3" Margin="0,0,0,10"/>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="4" HorizontalAlignment="Right">
+            <Button Content="Aceptar" Width="80" Margin="0,0,10,0" Click="BtnAceptar_Click"/>
+            <Button Content="Cancelar" Width="80" Click="BtnCancelar_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

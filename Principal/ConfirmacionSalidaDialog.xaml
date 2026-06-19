@@ -1,0 +1,70 @@
+﻿<Window x:Class="POS.Principal.ConfirmacionSalidaDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:POS.Principal"
+        mc:Ignorable="d"
+        Title="Confirmar salida" 
+        WindowStartupLocation="CenterScreen"
+        SizeToContent="WidthAndHeight"
+        ResizeMode="NoResize"
+        Background="#F9FBFC"
+        WindowStyle="SingleBorderWindow">
+
+    <Window.Resources>
+        <!-- Estilo para botones principales -->
+        <Style x:Key="BotonPrimario" TargetType="Button">
+            <Setter Property="Background" Value="#3399FF"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Padding" Value="12,6"/>
+            <Setter Property="Margin" Value="0,5"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                                CornerRadius="8"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="1">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Estilo para botón continuar trabajando -->
+        <Style x:Key="BotonSecundario" TargetType="Button" BasedOn="{StaticResource BotonPrimario}">
+            <Setter Property="Background" Value="#E0E0E0"/>
+            <Setter Property="Foreground" Value="Black"/>
+        </Style>
+
+        <!-- Estilo para botón salir completamente) -->
+        <Style x:Key="BotonPeligro" TargetType="Button" BasedOn="{StaticResource BotonPrimario}">
+            <Setter Property="Background" Value="#FF5252"/>
+        </Style>
+    </Window.Resources>
+
+    <StackPanel Margin="20" Width="300">
+        <TextBlock Text="¿Qué acción deseas realizar?" 
+                   FontWeight="Bold" 
+                   FontSize="16"
+                   Foreground="#333"
+                   Margin="0,0,0,15"/>
+
+        <Button Content="Cerrar sesión y volver al login" 
+                Style="{StaticResource BotonPrimario}" 
+                Click="BtnCerrarSesion_Click"/>
+
+        <Button Content="Salir completamente de la aplicación" 
+                Style="{StaticResource BotonPeligro}" 
+                Click="BtnSalir_Click"/>
+
+        <Button Content="Continuar trabajando" 
+                Style="{StaticResource BotonSecundario}" 
+                Click="BtnContinuar_Click"/>
+    </StackPanel>
+</Window>
