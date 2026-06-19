@@ -1,0 +1,122 @@
+﻿<Window x:Class="POS.Empleados.Empleados"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Gestión de Empleados"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="CanMinimize"
+        Width="850"
+        Height="550"
+        Background="#F7F7F7">
+
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Filtro de búsqueda -->
+        <StackPanel Orientation="Horizontal" Margin="0,0,0,15">
+            <Label Content="Buscar Empleado:" FontWeight="SemiBold" FontSize="14" VerticalAlignment="Center" />
+            <TextBox x:Name="Txt_BuscarEmpleado"
+                     Width="220"
+                     Margin="10,0"
+                     Padding="6"
+                     FontSize="13"
+                     Background="White"
+                     BorderBrush="#CCCCCC"
+                     BorderThickness="1"
+                     TextChanged="Txt_BuscarEmpleado_TextChanged"/>
+        </StackPanel>
+
+        <!-- Tabla de empleados -->
+        <Border Grid.Row="1" BorderBrush="#DDDDDD" BorderThickness="1" CornerRadius="6">
+            <DataGrid x:Name="DataGrid_Empleados"
+                      AutoGenerateColumns="False"
+                      CanUserAddRows="False"
+                      IsReadOnly="True"
+                      HeadersVisibility="Column"
+                      GridLinesVisibility="None"
+                      RowBackground="White"
+                      AlternatingRowBackground="#FAFAFA"
+                      ColumnHeaderHeight="30"
+                      FontSize="13"
+                      Margin="0"
+                      Padding="4">
+                <DataGrid.Resources>
+                    <Style TargetType="DataGridColumnHeader">
+                        <Setter Property="FontWeight" Value="SemiBold"/>
+                        <Setter Property="Background" Value="#EEEEEE"/>
+                        <Setter Property="Padding" Value="6,4"/>
+                        <Setter Property="BorderThickness" Value="0,0,0,1"/>
+                        <Setter Property="BorderBrush" Value="#CCCCCC"/>
+                    </Style>
+                </DataGrid.Resources>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="ID" Binding="{Binding nEmpleadoID}" Width="Auto"/>
+                    <DataGridTextColumn Header="Nombre" Binding="{Binding cNombreUsuario}" Width="*"/>
+                    <DataGridTextColumn Header="Contraseña" Binding="{Binding cContrasena}" Width="*"/>
+                    <DataGridTextColumn Header="Salario" Binding="{Binding nSalario}" Width="*"/>
+                    <DataGridTextColumn Header="Tipo" Binding="{Binding cTipo}" Width="*"/>
+                    <DataGridTextColumn Header="Ventas Totales" Binding="{Binding nVentas}" Width="*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Border>
+
+        <!-- Botones -->
+        <StackPanel Orientation="Horizontal"
+            Grid.Row="2"
+            HorizontalAlignment="Right"
+            Margin="0,15,0,0">
+            <Button x:Name="Btn_AgregarEmpleado"
+            Content="Agregar"
+            Width="110"
+            Padding="6"
+            Margin="4,0"
+            Background="#2D89EF"
+            Foreground="White"
+            FontWeight="SemiBold"
+            BorderThickness="0"
+            Cursor="Hand"
+            Click="Btn_AgregarEmpleado_Click"/>
+            <Button x:Name="Btn_EditarEmpleado"
+            Content="Editar"
+            Width="110"
+            Padding="6"
+            Margin="4,0"
+            Background="#FFB800"
+            Foreground="Black"
+            FontWeight="SemiBold"
+            BorderThickness="0"
+            Cursor="Hand"
+            Click="Btn_EditarEmpleado_Click"/>
+            <Button x:Name="Btn_EliminarEmpleado"
+            Content="Eliminar"
+            Width="110"
+            Padding="6"
+            Margin="4,0"
+            Background="#E81123"
+            Foreground="White"
+            FontWeight="SemiBold"
+            BorderThickness="0"
+            Cursor="Hand"
+            Click="Btn_EliminarEmpleado_Click"/>
+            <Button x:Name="Btn_Regresar"
+            Content="Regresar"
+            Width="110"
+            Padding="6"
+            Margin="4,0"
+            Background="#E0E0E0"
+            Foreground="Black"
+            FontWeight="SemiBold"
+            BorderBrush="#B0B0B0"
+            Cursor="Hand"
+            Click="Btn_Regresar_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>
+
+ 

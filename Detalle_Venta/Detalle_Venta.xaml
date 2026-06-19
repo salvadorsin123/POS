@@ -1,0 +1,48 @@
+﻿<Window x:Class="POS.Ventas.Detalle_Venta"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Detalle Venta" Height="600" Width="800"
+        WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <CollectionViewSource x:Key="DetalleVentaCVS" x:Name="DetalleVentaCVS"
+                          Source="{Binding DetallesVenta}">
+            <CollectionViewSource.GroupDescriptions>
+                <PropertyGroupDescription PropertyName="nVentaID"/>
+            </CollectionViewSource.GroupDescriptions>
+        </CollectionViewSource>
+    </Window.Resources>
+
+
+    <Grid Background="White">
+        <DataGrid x:Name="ListaDetalleVenta"
+                  AutoGenerateColumns="False"
+                  ItemsSource="{Binding Source={StaticResource DetalleVentaCVS}}"
+                  IsReadOnly="True"
+                  GridLinesVisibility="Horizontal"
+                  HeadersVisibility="Column"
+                  Margin="10">
+            <DataGrid.GroupStyle>
+                <GroupStyle>
+                    <GroupStyle.HeaderTemplate>
+                        <DataTemplate>
+                            <StackPanel Margin="5,10,0,5">
+                                <TextBlock Text="{Binding Name, StringFormat=Venta ID: {0}}" 
+                       FontWeight="Bold" FontSize="16" Foreground="DarkBlue"/>
+                                <TextBlock Text="{Binding Path=Items[0].TotalVenta, StringFormat=Total: {0:C}}"
+                       FontWeight="Normal" FontSize="14" Foreground="DarkGreen"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </GroupStyle.HeaderTemplate>
+
+                </GroupStyle>
+            </DataGrid.GroupStyle>
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Modelo" Binding="{Binding ModeloProducto}"/>
+                <DataGridTextColumn Header="Cantidad" Binding="{Binding nCantidad}"/>
+                <DataGridTextColumn Header="Precio" Binding="{Binding nPrecio, StringFormat=C}"/>
+                <DataGridTextColumn Header="Subtotal" Binding="{Binding nSubtotal, StringFormat=C}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>

@@ -1,0 +1,68 @@
+﻿<UserControl x:Class="POS.Apartados.Apartados"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d"
+             Background="#f5f5f5"
+             HorizontalAlignment="Stretch"
+             VerticalAlignment="Stretch">
+
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Filtro de búsqueda -->
+        <StackPanel Orientation="Horizontal" Margin="0,0,0,10" VerticalAlignment="Center">
+            <Label Content="Buscar Apartado:" 
+                   VerticalAlignment="Center"
+                   FontWeight="SemiBold"
+                   Foreground="#333"/>
+            <TextBox x:Name="Txt_BuscarApartado" Width="220" Margin="10,0" Padding="5"
+                     Background="White" BorderBrush="#ccc" BorderThickness="1"
+                     TextChanged="Txt_BuscarApartado_TextChanged"/>
+        </StackPanel>
+
+        <!-- Tabla de apartados con sombra sutil -->
+        <Border Grid.Row="1" Background="White" Padding="5"
+                BorderBrush="#ddd" BorderThickness="1"
+                Margin="0,0,0,10">
+            <Border.Effect>
+                <DropShadowEffect Color="Black" Opacity="0.05" BlurRadius="8" Direction="270" ShadowDepth="2"/>
+            </Border.Effect>
+            <DataGrid x:Name="DataGrid_Apartados"
+                      AutoGenerateColumns="False"
+                      HeadersVisibility="Column"
+                      CanUserAddRows="False"
+                      IsReadOnly="True"
+                      RowBackground="White"
+                      AlternatingRowBackground="#f9f9f9"
+                      GridLinesVisibility="None">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="ID Apartado" Binding="{Binding nApartadoID}" Width="Auto"/>
+                    <DataGridTextColumn Header="ID Cliente" Binding="{Binding nClienteID}" Width="*"/>
+                    <DataGridTextColumn Header="Nombre Cliente" Binding="{Binding cNombreCliente}" Width="*"/>
+                    <DataGridTextColumn Header="Anticipo" Binding="{Binding nAnticipo, StringFormat='C2'}" Width="*"/>
+                    <DataGridTextColumn Header="Saldo Pendiente" Binding="{Binding nSaldoPendiente, StringFormat='C2'}" Width="*"/>
+                    <DataGridTextColumn Header="Total Apartado" Binding="{Binding nTotalApartado, StringFormat='C2'}" Width="*"/>
+                    <DataGridTextColumn Header="Fecha Apartado" Binding="{Binding tFechaApartado, StringFormat=d}" Width="*"/>
+                    <DataGridTextColumn Header="Fecha Límite" Binding="{Binding dFechaLimite, StringFormat=d}" Width="*"/>
+                    <DataGridTextColumn Header="Estado" Binding="{Binding cEstado}" Width="*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Border>
+
+        <!-- Botones -->
+        <StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Right">
+            <Button x:Name="Btn_Abonar" Content="Abonar" Width="100" Margin="5"
+                    Background="#4CAF50" Foreground="White" BorderBrush="#ccc" BorderThickness="1"
+                    Click="Btn_Abonar_Click"/>
+            <Button x:Name="Btn_EliminarApartado" Content="Eliminar" Width="100" Margin="5"
+                    Background="#f44336" Foreground="White" BorderBrush="#d32f2f" BorderThickness="1"
+                    Click="Btn_EliminarApartado_Click"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

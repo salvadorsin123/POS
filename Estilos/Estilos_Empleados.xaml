@@ -1,0 +1,68 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                    mc:Ignorable="d">
+
+    <!-- Colores -->
+    <Color x:Key="ColorPrimario">#28a745</Color>
+    <Color x:Key="ColorSecundario">#ffc107</Color>
+    <Color x:Key="ColorPeligro">#dc3545</Color>
+    <Color x:Key="ColorTextoClaro">#ffffff</Color>
+    <Color x:Key="ColorTextoOscuro">#333333</Color>
+
+    <!-- Convertir colores a SolidColorBrush -->
+    <SolidColorBrush x:Key="ColorPrimarioBrush" Color="{StaticResource ColorPrimario}" />
+    <SolidColorBrush x:Key="ColorSecundarioBrush" Color="{StaticResource ColorSecundario}" />
+    <SolidColorBrush x:Key="ColorPeligroBrush" Color="{StaticResource ColorPeligro}" />
+    <SolidColorBrush x:Key="ColorTextoClaroBrush" Color="{StaticResource ColorTextoClaro}" />
+    <SolidColorBrush x:Key="ColorTextoOscuroBrush" Color="{StaticResource ColorTextoOscuro}" />
+
+    <!-- Estilos Generales -->
+    <Style x:Key="BotonPrimario" TargetType="Button">
+        <Setter Property="Background" Value="{StaticResource ColorPrimarioBrush}" />
+        <Setter Property="Foreground" Value="{StaticResource ColorTextoClaroBrush}" />
+        <Setter Property="Padding" Value="10,5" />
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="Cursor" Value="Hand" />
+    </Style>
+
+    <Style x:Key="BotonSecundario" TargetType="Button">
+        <Setter Property="Background" Value="{StaticResource ColorSecundarioBrush}" />
+        <Setter Property="Foreground" Value="{StaticResource ColorTextoOscuroBrush}" />
+        <Setter Property="Padding" Value="10,5" />
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="Cursor" Value="Hand" />
+    </Style>
+
+    <Style x:Key="BotonPeligro" TargetType="Button">
+        <Setter Property="Background" Value="{StaticResource ColorPeligroBrush}" />
+        <Setter Property="Foreground" Value="{StaticResource ColorTextoClaroBrush}" />
+        <Setter Property="Padding" Value="10,5" />
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="Cursor" Value="Hand" />
+    </Style>
+
+    <!-- Estilo para los TextBox -->
+    <Style x:Key="TextoBoxEstilo" TargetType="TextBox">
+        <Setter Property="Padding" Value="8" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="BorderBrush" Value="#cccccc" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="Margin" Value="0,0,0,10" />
+    </Style>
+
+    <!-- Estilo para las etiquetas -->
+    <Style x:Key="EtiquetaEstilo" TargetType="Label">
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="Margin" Value="0,0,0,5" />
+    </Style>
+
+</ResourceDictionary>

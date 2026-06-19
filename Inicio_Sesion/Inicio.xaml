@@ -1,0 +1,112 @@
+﻿<Window x:Class="POS.Inicio_Sesion.Inicio"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:POS.Inicio_Sesion"
+        mc:Ignorable="d"
+        Title="Inicio de Sesión"
+        Height="320"
+        Width="500"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="CanMinimize"
+        Background="#f5f5f5"
+        Loaded="Form_load"
+        >
+
+    <!-- Borde y fondo de la ventana -->
+    <Border CornerRadius="10" 
+        Background="White" 
+        BorderBrush="#cccccc" 
+        BorderThickness="1" 
+        Padding="10" 
+        SnapsToDevicePixels="True">
+
+        <Border.Effect>
+            <DropShadowEffect Color="Black"
+                          Direction="270"
+                          ShadowDepth="4"
+                          Opacity="0.3"
+                          BlurRadius="10"/>
+        </Border.Effect>
+
+        <!-- Grid principal -->
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <!-- Logo / Imagen -->
+            <StackPanel Grid.Column="0" 
+                        Width="180" 
+                        Margin="10" 
+                        VerticalAlignment="Center" 
+                        HorizontalAlignment="Center">
+                <Label Content=""
+                       FontSize="16"
+                       FontWeight="Bold"
+                       Foreground="#2c3e50"
+                       HorizontalAlignment="Center"
+                       Margin="0,0,0,10"/>
+                <Image Source="/imagenes/Inicio_IMG/BiciCT.png"
+                       Margin="0,0,0,50"
+                       Width="150"
+                       Height="200"
+                       Stretch="Uniform"/>
+            </StackPanel>
+
+            <!-- Controles de Inicio de Sesión -->
+            <StackPanel Grid.Column="1" 
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
+                        Width="268">
+                <Label Content="INICIAR SESIÓN"
+                       FontSize="18"
+                       FontWeight="SemiBold"
+                       Foreground="#2c3e50"
+                       HorizontalAlignment="Center"
+                       Margin="0,0,0,20"/>
+
+                <Label Content="Usuario"
+                       Foreground="#555"
+                       FontWeight="Normal"/>
+                <ComboBox x:Name="Cbo_Usuarios"
+                          Width="250"
+                          Margin="0,5,0,15"
+                          IsEditable="True"
+                          Text="Selecciona Usuario"
+                          IsReadOnly="True"
+                          Background="#ffffff"
+                          BorderBrush="#cccccc"
+                          Foreground="#333">
+                </ComboBox>
+                
+
+                <Label Content="Contraseña"
+                       Foreground="#555"
+                       FontWeight="Normal"/>
+                <PasswordBox x:Name="Txt_Password"
+                             Width="250"
+                             Height="25"
+                             Margin="0,5,0,20"
+                             Background="#ffffff"
+                             BorderBrush="#cccccc"
+                             />
+
+                <Button x:Name="btn_Iniciar"
+                        Click="btn_Iniciar_Click"
+                        Content="Iniciar"
+                        Width="120"
+                        Height="30"
+                        Background="#2980b9"
+                        Foreground="White"
+                        BorderBrush="#2980b9"
+                        BorderThickness="1"
+                        HorizontalAlignment="Center"
+                        Cursor="Hand"
+                        FontWeight="SemiBold"/>
+            </StackPanel>
+        </Grid>
+    </Border>
+</Window>

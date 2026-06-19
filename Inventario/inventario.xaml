@@ -1,0 +1,44 @@
+﻿<UserControl x:Class="POS.Inventario.Inventario"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:POS.Inventario"
+             mc:Ignorable="d" 
+             
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Filtro de búsqueda -->
+        <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+            <Label Content="Buscar Producto:" FontWeight="Bold"/>
+            <TextBox x:Name="Txt_BuscarInventario" Width="200" Margin="10,0"
+            TextChanged="Txt_BuscarInventario_TextChanged"/>
+        </StackPanel>
+
+        <!-- Tabla de productos -->
+        <DataGrid x:Name="DataGrid_Inventario" 
+                  Grid.Row="1" 
+                  AutoGenerateColumns="False" 
+                  Height="500" 
+                  Margin="0,0,0,10">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Categoria ID" Binding="{Binding ID}" Width="Auto"/>
+                <DataGridTextColumn Header="Nombre" Binding="{Binding Categoria}" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <!-- Botones -->
+        <StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Right">
+            <Button x:Name="Btn_AgregarProducto" Content="Agregar" Width="100" Margin="5" Background="#28a745" Foreground="White" Click="Btn_AgregarProducto_Click"/>
+            <Button x:Name="Btn_EditarProducto" Content="Editar" Width="100" Margin="5" Background="#ffc107" Foreground="Black" Click="Btn_EditarProducto_Click"/>
+            <Button x:Name="Btn_EliminarProducto" Content="Eliminar" Width="100" Margin="5" Background="#dc3545" Foreground="White" Click="Btn_EliminarProducto_Click"/>
+
+        </StackPanel>
+    </Grid>
+</UserControl>

@@ -1,0 +1,24 @@
+﻿<Window x:Class="POS.Apartados.CrearTApartado"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Crear Apartado" Height="300" Width="400"
+        WindowStartupLocation="CenterScreen">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Label Content="Abono inicial:"/>
+        <TextBox x:Name="Txt_Abono" Grid.Row="1" Margin="0,5" PreviewTextInput="Txt_Abono_PreviewTextInput"/>
+
+        <Label Grid.Row="2" x:Name="Lbl_SaldoPendiente" Content="Saldo pendiente: $0" Margin="0,10"/>
+
+        <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,50,0,0">
+            <Button Content="Confirmar" Width="75" Height="25" Margin="5" Background="#4CAF50" Foreground="White" Click="Btn_Confirmar_Click"/>
+            <Button Content="Cancelar" Width="75" Height="25" Margin="5" Background="Red" Foreground="White" Click="Btn_Cancelar_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>
